@@ -1,65 +1,204 @@
-import Image from "next/image";
+import Link from 'next/link';
+import DownloadInput from '@/components/DownloadInput';
 
-export default function Home() {
+const TOOLS = [
+  { num: '01', label: 'VIDEO',      href: '/video',      desc: '' },
+  { num: '02', label: 'PHOTO',      href: '/photo',      desc: '' },
+  { num: '03', label: 'REELS',      href: '/reels',      desc: '' },
+  { num: '04', label: 'STORY',      href: '/story',      desc: '' },
+  { num: '05', label: 'HIGHLIGHTS', href: '/highlights', desc: '' },
+  { num: '06', label: 'DP',         href: '/dp',         desc: '' },
+  { num: '07', label: 'AUDIO',      href: '/audio',      desc: '' },
+  { num: '08', label: 'PRIVATE',    href: '/private',    desc: '' },
+];
+
+const MARQUEE_TEXT = '★ FREE  ★ NO LOGIN  ★ HIGH QUALITY  ★ NO WATERMARK  ★ FAST  ★ FREE  ★ NO LOGIN  ★ HIGH QUALITY  ★ NO WATERMARK  ★ FAST  ';
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      {/* ─── HERO ─────────────────────────────────────────── */}
+      <section style={{
+        maxWidth: 1200, margin: '0 auto', padding: '80px 24px 0',
+      }}>
+        {/* Big headline — user fills in */}
+        <div style={{
+          fontSize: 'clamp(52px, 9vw, 120px)',
+          fontWeight: 900,
+          letterSpacing: '-0.045em',
+          lineHeight: 0.92,
+          marginBottom: 48,
+        }}>
+          <span style={{ display: 'block' }}>
+            <span style={{
+              fontSize: '1em',
+              display: 'inline-block',
+              transform: 'translateY(-0.08em)',
+              marginRight: '0.08em',
+              lineHeight: 1,
+            }}>[</span>
+            YOUR
+          </span>
+          <span style={{ display: 'block', WebkitTextStroke: '2px #0a0a0a', color: 'transparent' }}>HEADLINE</span>
+          <span style={{ display: 'block' }}>
+            HERE
+            <span style={{
+              fontSize: '1em',
+              display: 'inline-block',
+              transform: 'translateY(-0.08em)',
+              marginLeft: '0.08em',
+              lineHeight: 1,
+              WebkitTextStroke: '0',
+              color: '#0a0a0a',
+            }}>]</span>
+          </span>
+        </div>
+
+        {/* Download input */}
+        <div style={{ maxWidth: 720, marginBottom: 16 }}>
+          <DownloadInput />
+        </div>
+        <p style={{ fontSize: 11, color: '#888', letterSpacing: '0.05em', fontWeight: 600 }}>
+          [TAGLINE — NO LOGIN · FREE · FAST]
+        </p>
+      </section>
+
+      {/* ─── MARQUEE ──────────────────────────────────────── */}
+      <div style={{
+        borderTop: '1px solid #0a0a0a',
+        borderBottom: '1px solid #0a0a0a',
+        margin: '72px 0 0',
+        padding: '12px 0',
+        overflow: 'hidden',
+        background: '#0a0a0a',
+      }}>
+        <div className="marquee-track">
+          {MARQUEE_TEXT.repeat(2).split('').map((ch, i) => (
+            <span key={i} style={{
+              color: '#fafafa',
+              fontSize: 11,
+              fontWeight: 800,
+              letterSpacing: '0.12em',
+            }}>{ch}</span>
+          ))}
+        </div>
+      </div>
+
+      {/* ─── TOOLS GRID ───────────────────────────────────── */}
+      <section style={{ maxWidth: 1200, margin: '0 auto', padding: '0 0' }}>
+        <div style={{ borderBottom: '1px solid #0a0a0a', padding: '40px 24px 20px' }}>
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#888' }}>
+            — ALL TOOLS
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+        }}>
+          {TOOLS.map(({ num, label, href, desc }, i) => (
+            <Link key={href} href={href} style={{
+              textDecoration: 'none', color: '#0a0a0a',
+              borderRight: i % 4 !== 3 ? '1px solid #d4d4d4' : 'none',
+              borderBottom: i < 4 ? '1px solid #d4d4d4' : 'none',
+              padding: '32px 24px',
+              display: 'flex', flexDirection: 'column', gap: 12,
+              minHeight: 160,
+              transition: 'background 0.15s',
+            }}
+            className="invert-hover"
+            >
+              <span className="tool-num">{num}</span>
+              <span style={{ fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em' }}>{label}</span>
+              {desc && <span style={{ fontSize: 12, color: '#888', marginTop: 'auto' }}>{desc}</span>}
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', marginTop: 'auto' }}>
+                USE FREE →
+              </span>
+            </Link>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* ─── FEATURES ─────────────────────────────────────── */}
+      <section style={{
+        maxWidth: 1200, margin: '0 auto', padding: '80px 24px',
+        borderTop: '1px solid #0a0a0a',
+      }}>
+        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#888', marginBottom: 40 }}>
+          — WHY USE THIS
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0' }}>
+          {[
+            { n: '①', title: '[FEATURE 1]',   body: '' },
+            { n: '②', title: '[FEATURE 2]',   body: '' },
+            { n: '③', title: '[FEATURE 3]',   body: '' },
+          ].map(({ n, title, body }, i) => (
+            <div key={i} style={{
+              padding: '40px 32px',
+              borderLeft: i > 0 ? '1px solid #d4d4d4' : 'none',
+            }}>
+              <div style={{ fontSize: 28, marginBottom: 16 }}>{n}</div>
+              <p style={{ fontSize: 18, fontWeight: 900, letterSpacing: '-0.02em', marginBottom: 12 }}>{title}</p>
+              <p style={{ fontSize: 13, color: '#888', lineHeight: 1.6 }}>{body || '[Description goes here]'}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ─── HOW IT WORKS ─────────────────────────────────── */}
+      <section style={{
+        borderTop: '1px solid #0a0a0a', borderBottom: '1px solid #0a0a0a',
+        background: '#0a0a0a', color: '#fafafa',
+      }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 24px' }}>
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#888', marginBottom: 40 }}>
+            — HOW IT WORKS
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
+            {[
+              { step: '01', title: '[STEP 1]', body: '' },
+              { step: '02', title: '[STEP 2]', body: '' },
+              { step: '03', title: '[STEP 3]', body: '' },
+            ].map(({ step, title, body }, i) => (
+              <div key={step} style={{
+                padding: '40px 32px',
+                borderLeft: i > 0 ? '1px solid #333' : 'none',
+              }}>
+                <p style={{ fontSize: 48, fontWeight: 900, color: '#333', letterSpacing: '-0.04em', marginBottom: 20 }}>{step}</p>
+                <p style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-0.02em', marginBottom: 12 }}>{title}</p>
+                <p style={{ fontSize: 13, color: '#666', lineHeight: 1.7 }}>{body || '[Step description]'}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FAQ ──────────────────────────────────────────── */}
+      <section style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 24px' }}>
+        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#888', marginBottom: 40 }}>
+          — FAQ
+        </p>
+        <div>
+          {[
+            { q: '[FAQ Question 1]', a: '[Answer 1]' },
+            { q: '[FAQ Question 2]', a: '[Answer 2]' },
+            { q: '[FAQ Question 3]', a: '[Answer 3]' },
+            { q: '[FAQ Question 4]', a: '[Answer 4]' },
+          ].map(({ q, a }, i) => (
+            <div key={i} style={{
+              borderTop: '1px solid #d4d4d4',
+              padding: '24px 0',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: 24,
+            }}>
+              <p style={{ fontSize: 15, fontWeight: 700 }}>{q}</p>
+              <p style={{ fontSize: 14, color: '#555', lineHeight: 1.7 }}>{a}</p>
+            </div>
+          ))}
+          <div style={{ borderTop: '1px solid #d4d4d4' }} />
+        </div>
+      </section>
+    </>
   );
 }

@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --black: #0a0a0a;
+  --white: #fafafa;
+  --gray: #888;
+  --border: #d4d4d4;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html { background: var(--white); color: var(--black); }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--white);
+  color: var(--black);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Brutalist grid line */
+.grid-line {
+  border-top: 1px solid var(--black);
+}
+
+/* Invert hover */
+.invert-hover {
+  transition: background 0.15s, color 0.15s;
+}
+.invert-hover:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* Tool number badge */
+.tool-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gray);
+}
+
+/* Input base */
+.url-input {
+  width: 100%;
+  border: 1px solid var(--black);
+  background: transparent;
+  font-size: 15px;
+  padding: 14px 16px;
+  outline: none;
+  font-family: inherit;
+}
+.url-input::placeholder { color: var(--gray); }
+.url-input:focus { border-color: var(--black); }
+
+/* Download button */
+.dl-btn {
+  background: var(--black);
+  color: var(--white);
+  border: 1px solid var(--black);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.dl-btn:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 22s linear infinite;
+  white-space: nowrap;
+  display: inline-flex;
 }

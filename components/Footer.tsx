@@ -1,11 +1,18 @@
 import Link from 'next/link';
 import type { Locale } from '@/lib/i18n';
+import { getDict } from '@/lib/dict';
 
 interface Props {
   locale: Locale;
 }
 
 export default function Footer({ locale }: Props) {
+  const d = getDict(locale);
+  const items = [
+    { label: d.footer.privacy, href: 'privacy' },
+    { label: d.footer.terms,   href: 'terms' },
+    { label: d.footer.contact, href: 'contact' },
+  ];
   return (
     <footer style={{ borderTop: '1px solid #0a0a0a', marginTop: 120 }}>
       <div style={{
@@ -17,21 +24,17 @@ export default function Footer({ locale }: Props) {
           INSTADOWN
         </span>
         <div style={{ display: 'flex', gap: 24 }}>
-          {[
-            { label: 'Privacy', href: 'privacy' },
-            { label: 'Terms',   href: 'terms' },
-            { label: 'Contact', href: 'contact' },
-          ].map(({ label, href }) => (
+          {items.map(({ label, href }) => (
             <Link key={href} href={`/${locale}/${href}`} style={{
               fontSize: 12, color: '#888', textDecoration: 'none',
               letterSpacing: '0.04em', fontWeight: 600,
             }}>
-              {label.toUpperCase()}
+              {label}
             </Link>
           ))}
         </div>
         <span style={{ fontSize: 11, color: '#888' }}>
-          Not affiliated with Meta or Instagram.
+          {d.footer.disclaimer}
         </span>
       </div>
     </footer>

@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 import DownloadInput from './DownloadInput';
 import BigHeadline from './BigHeadline';
 import { isLocale, DEFAULT_LOCALE, type Locale } from '@/lib/i18n';
+import { getDict } from '@/lib/dict';
 
 // Renders <b>…</b> as <strong> and [text](url) as Next Link / <a>.
 // Internal paths (starting with /) get the locale prefix added so users
@@ -67,6 +68,7 @@ export default async function ToolPageLayout({ num, topLine, bottomLine, subtitl
   const pathname = headersList.get('x-pathname') ?? '/';
   const segment = pathname.split('/')[1] ?? '';
   const locale: Locale = isLocale(segment) ? segment : DEFAULT_LOCALE;
+  const d = getDict(locale);
   const currentSlug = currentHref.replace(/^\//, '');
 
   return (
@@ -95,7 +97,7 @@ export default async function ToolPageLayout({ num, topLine, bottomLine, subtitl
           </div>
 
           <p style={{ fontSize: 11, color: '#888', marginTop: 12, letterSpacing: '0.05em', fontWeight: 600 }}>
-            FREE · NO LOGIN · NO WATERMARK
+            {d.toolHeroTagline}
           </p>
         </div>
       </section>
@@ -128,7 +130,7 @@ export default async function ToolPageLayout({ num, topLine, bottomLine, subtitl
       {/* ─── FAQ ─── */}
       <section style={{ maxWidth: 1200, margin: '0 auto', padding: '72px 24px' }}>
         <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#888', marginBottom: 40 }}>
-          — FAQ
+          {d.ui.faq}
         </p>
         {faq.map(({ q, a }, i) => (
           <div key={i} style={{
@@ -152,7 +154,7 @@ export default async function ToolPageLayout({ num, topLine, bottomLine, subtitl
       }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 24px' }}>
           <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#555', marginBottom: 24 }}>
-            — OTHER TOOLS
+            {d.ui.otherTools}
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 0 }}>
             {ALL_TOOLS.filter(t => t.slug !== currentSlug).map(({ label, slug }) => (

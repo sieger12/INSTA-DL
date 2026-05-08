@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import DownloadInput from '@/components/DownloadInput';
+import { isLocale, DEFAULT_LOCALE, type Locale } from '@/lib/i18n';
+import { getDict } from '@/lib/dict';
 
 const TOOLS = [
   { num: '01', label: 'VIDEO',      slug: 'video' },
@@ -12,10 +14,11 @@ const TOOLS = [
   { num: '08', label: 'PRIVATE',    slug: 'private' },
 ];
 
-const MARQUEE_TEXT = '★ FREE  ★ NO LOGIN  ★ HIGH QUALITY  ★ NO WATERMARK  ★ FAST  ★ FREE  ★ NO LOGIN  ★ HIGH QUALITY  ★ NO WATERMARK  ★ FAST  ';
-
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+  const { locale: rawLocale } = await params;
+  const locale: Locale = isLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
+  const d = getDict(locale);
+  const marquee = d.marquee;
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────── */}
@@ -60,7 +63,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <DownloadInput />
         </div>
         <p style={{ fontSize: 11, color: '#888', letterSpacing: '0.05em', fontWeight: 600 }}>
-          STORIES · REELS · PHOTOS · HIGHLIGHTS · DP · AUDIO — ONE PASTE, NO LOGIN
+          {d.tagline}
         </p>
       </section>
 
@@ -74,7 +77,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         background: '#0a0a0a',
       }}>
         <div className="marquee-track">
-          {MARQUEE_TEXT.repeat(2).split('').map((ch, i) => (
+          {marquee.repeat(2).split('').map((ch, i) => (
             <span key={i} style={{
               color: '#fafafa',
               fontSize: 11,
@@ -89,7 +92,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section style={{ maxWidth: 1200, margin: '0 auto', padding: '0 0' }}>
         <div style={{ borderBottom: '1px solid #0a0a0a', padding: '40px 24px 20px' }}>
           <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#888' }}>
-            — ALL TOOLS
+            {d.ui.allTools}
           </p>
         </div>
 
@@ -111,7 +114,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <span className="tool-num">{num}</span>
               <span style={{ fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em' }}>{label}</span>
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', marginTop: 'auto' }}>
-                USE FREE →
+                {d.ui.useFree}
               </span>
             </Link>
           ))}
@@ -124,7 +127,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         borderTop: '1px solid #0a0a0a',
       }}>
         <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#888', marginBottom: 40 }}>
-          — WHY USE THIS
+          {d.ui.whyUseThis}
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0' }}>
           {[
@@ -163,7 +166,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 24px' }}>
           <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#888', marginBottom: 40 }}>
-            — HOW IT WORKS
+            {d.ui.howItWorks}
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
             {[
@@ -199,7 +202,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* ─── FAQ ──────────────────────────────────────────── */}
       <section style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 24px' }}>
         <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#888', marginBottom: 40 }}>
-          — FAQ
+          {d.ui.faq}
         </p>
         <div>
           {[

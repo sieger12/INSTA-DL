@@ -19,11 +19,10 @@ export default function Header() {
         height: 52, display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         {/* Logo */}
-        <Link href="/" className="invert-hover" style={{
+        <Link href="/" style={{
           fontWeight: 900, fontSize: 18, letterSpacing: '-0.04em',
           textDecoration: 'none',
-          padding: 0,
-          lineHeight: 1,
+          color: '#0a0a0a',
         }}>
           INSTADOWN
         </Link>

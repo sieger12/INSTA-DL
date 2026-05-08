@@ -50,8 +50,8 @@ export default function BigHeadline({ topLine, bottomLine, highlightIndices, com
   const highlights = new Set(highlightIndices ?? auto);
 
   const fontSize = compact
-    ? 'clamp(40px, 7.5vw, 100px)'
-    : 'clamp(52px, 9vw, 120px)';
+    ? 'clamp(34px, 7vw, 88px)'
+    : 'clamp(40px, 8.5vw, 110px)';
 
   return (
     <h1 style={{

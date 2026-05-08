@@ -61,12 +61,9 @@ export default function ToolPageLayout({ num, topLine, bottomLine, subtitle, sec
       {/* ─── CONTENT SECTIONS ─── */}
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
         {sections.map(({ h2, body }, i) => (
-          <section key={i} style={{
+          <section key={i} className="tool-section" style={{
             borderBottom: '1px solid #d4d4d4',
             padding: '56px 0',
-            display: 'grid',
-            gridTemplateColumns: '280px 1fr',
-            gap: 48,
           }}>
             <h2 style={{
               fontSize: 18, fontWeight: 900,
@@ -89,12 +86,9 @@ export default function ToolPageLayout({ num, topLine, bottomLine, subtitle, sec
           — FAQ
         </p>
         {faq.map(({ q, a }, i) => (
-          <div key={i} style={{
+          <div key={i} className="grid-faq" style={{
             borderTop: '1px solid #d4d4d4',
             padding: '24px 0',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 24,
           }}>
             <p style={{ fontSize: 15, fontWeight: 700 }}>{q}</p>
             <p style={{ fontSize: 14, color: '#555', lineHeight: 1.7 }}>{a}</p>

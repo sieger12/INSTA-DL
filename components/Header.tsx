@@ -28,7 +28,7 @@ export default function Header() {
         </Link>
 
         {/* Nav */}
-        <nav style={{ display: 'flex', gap: 0 }}>
+        <nav className="header-nav" style={{ gap: 0 }}>
           {TOOLS.map(({ label, href }) => (
             <Link key={href} href={href} style={{
               fontSize: 12, fontWeight: 600, letterSpacing: '0.04em',

@@ -18,7 +18,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const { locale: rawLocale } = await params;
   const locale: Locale = isLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
   const d = getDict(locale);
-  const marquee = d.marquee;
+  // Marquee intentionally stays English across all locales
+  const marquee = '★ FREE  ★ NO LOGIN  ★ HIGH QUALITY  ★ NO WATERMARK  ★ FAST  ★ FREE  ★ NO LOGIN  ★ HIGH QUALITY  ★ NO WATERMARK  ★ FAST  ';
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────── */}

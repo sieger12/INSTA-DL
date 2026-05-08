@@ -23,16 +23,31 @@ body {
   border-top: 1px solid var(--black);
 }
 
-/* Invert hover */
+/* Invert hover — full ownership of color so inline styles don't fight us */
 .invert-hover {
+  color: var(--black);
+  background: transparent;
   transition: background 0.15s, color 0.15s;
 }
-.invert-hover:hover {
-  background: var(--black) !important;
+.invert-hover:hover,
+.invert-hover:hover * {
+  background-color: var(--black);
   color: var(--white) !important;
 }
-.invert-hover:hover * {
+.invert-hover:hover .tool-num {
   color: var(--white) !important;
+}
+
+/* Invert hover for chips on dark background (Other Tools strip) */
+.chip-invert {
+  color: var(--white);
+  background: transparent;
+  transition: background 0.15s, color 0.15s;
+}
+.chip-invert:hover,
+.chip-invert:hover * {
+  background-color: var(--white);
+  color: var(--black) !important;
 }
 
 /* Tool number badge */

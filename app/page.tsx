@@ -98,13 +98,12 @@ export default function HomePage() {
         }}>
           {TOOLS.map(({ num, label, href, desc }, i) => (
             <Link key={href} href={href} style={{
-              textDecoration: 'none', color: '#0a0a0a',
+              textDecoration: 'none',
               borderRight: i % 4 !== 3 ? '1px solid #d4d4d4' : 'none',
               borderBottom: i < 4 ? '1px solid #d4d4d4' : 'none',
               padding: '32px 24px',
               display: 'flex', flexDirection: 'column', gap: 12,
               minHeight: 160,
-              transition: 'background 0.15s',
             }}
             className="invert-hover"
             >

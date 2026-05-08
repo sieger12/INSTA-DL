@@ -120,14 +120,13 @@ export default function ToolPageLayout({ num, title, subtitle, sections, faq, cu
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 0 }}>
             {ALL_TOOLS.filter(t => t.href !== currentHref).map(({ label, href }) => (
               <Link key={href} href={href} style={{
-                color: '#fafafa', textDecoration: 'none',
+                textDecoration: 'none',
                 fontSize: 12, fontWeight: 700, letterSpacing: '0.06em',
                 padding: '10px 20px',
                 border: '1px solid #333',
                 marginRight: -1, marginBottom: -1,
-                transition: 'background 0.15s, color 0.15s',
               }}
-              className="invert-hover"
+              className="chip-invert"
               >
                 {label.toUpperCase()} →
               </Link>

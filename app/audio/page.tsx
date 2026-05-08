@@ -17,7 +17,7 @@ export default function Page() {
       sections={[
         {
           h2: "Download Instagram Reels audio only — MP3 in one step",
-          body: "Reels carry an AAC audio track inside an MP4 container. This page extracts the AAC, converts it to MP3, and hands you the audio file directly — no need to save the video first and run a separate converter.\n\nBitrate matches the source. Most Reels audio sits at 128 kbps AAC, which converts to a 128 kbps MP3 of equivalent quality. We don't upscale or fake higher-quality audio; if the source is mediocre, the export reflects that.\n\nThe Instagram Reels to MP3 converter on this page does one thing well. Paste a Reel URL, hit save, get an MP3. It's the same backend as the [Reels downloader](/reels) but the export step strips the video and finalizes the audio.",
+          body: "Reels carry an AAC audio track inside an MP4 container. This page extracts the AAC, converts it to MP3, and hands you the audio file directly — <b>download instagram reels audio only</b> in a single step, no need to save the video first and run a separate converter.\n\nBitrate matches the source. Most Reels audio sits at 128 kbps AAC, which converts to a 128 kbps MP3 of equivalent quality. We don't upscale or fake higher-quality audio; if the source is mediocre, the export reflects that.\n\nThe <b>Instagram reels to mp3 converter</b> on this page does one thing well. Paste a Reel URL, hit save, get an MP3. It's the same backend as the [Reels downloader](/reels) but the export step strips the video and finalizes the audio.",
         },
         {
           h2: "How to use the audio downloader without an app",

@@ -1,6 +1,38 @@
 import Link from 'next/link';
+import React from 'react';
 import DownloadInput from './DownloadInput';
 import BigHeadline from './BigHeadline';
+
+// Renders <b>…</b> as <strong> and [text](url) as Next Link / <a>.
+// Anything else passes through as plain text.
+function renderRich(text: string): React.ReactNode[] {
+  const out: React.ReactNode[] = [];
+  let cursor = 0;
+  let key = 0;
+  const re = /<b>([\s\S]*?)<\/b>|\[([^\]]+)\]\(([^)]+)\)/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > cursor) out.push(text.slice(cursor, m.index));
+    if (m[1] !== undefined) {
+      out.push(<strong key={key++}>{m[1]}</strong>);
+    } else if (m[2] !== undefined && m[3] !== undefined) {
+      const label = m[2];
+      const href = m[3];
+      if (href.startsWith('http') || href.startsWith('mailto:')) {
+        out.push(
+          <a key={key++} href={href} style={{ color: 'inherit', textDecoration: 'underline' }}>{label}</a>,
+        );
+      } else {
+        out.push(
+          <Link key={key++} href={href} style={{ color: 'inherit', textDecoration: 'underline' }}>{label}</Link>,
+        );
+      }
+    }
+    cursor = m.index + m[0].length;
+  }
+  if (cursor < text.length) out.push(text.slice(cursor));
+  return out;
+}
 
 const ALL_TOOLS = [
   { label: 'Video',      href: '/video' },
@@ -75,7 +107,7 @@ export default function ToolPageLayout({ num, topLine, bottomLine, subtitle, sec
             <div>
               {body.split('\n\n').map((para, j) => (
                 <p key={j} style={{ fontSize: 14, color: '#444', lineHeight: 1.8, marginBottom: 16 }}>
-                  {para}
+                  {renderRich(para)}
                 </p>
               ))}
             </div>
@@ -97,7 +129,7 @@ export default function ToolPageLayout({ num, topLine, bottomLine, subtitle, sec
             gap: 24,
           }}>
             <p style={{ fontSize: 15, fontWeight: 700 }}>{q}</p>
-            <p style={{ fontSize: 14, color: '#555', lineHeight: 1.7 }}>{a}</p>
+            <p style={{ fontSize: 14, color: '#555', lineHeight: 1.7 }}>{renderRich(a)}</p>
           </div>
         ))}
         <div style={{ borderTop: '1px solid #d4d4d4' }} />

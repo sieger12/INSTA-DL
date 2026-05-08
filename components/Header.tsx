@@ -22,7 +22,8 @@ export default function Header() {
         <Link href="/" className="invert-hover" style={{
           fontWeight: 900, fontSize: 18, letterSpacing: '-0.04em',
           textDecoration: 'none',
-          padding: '8px 12px',
+          padding: 0,
+          lineHeight: 1,
         }}>
           INSTADOWN
         </Link>

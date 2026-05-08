@@ -131,28 +131,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           {d.ui.whyUseThis}
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0' }}>
-          {[
-            {
-              n: '①',
-              title: 'No login, no app',
-              body: 'Paste a public URL or username, hit save. Nothing to install, no Instagram credentials handed over, no follower graph polluted by your account checking competitors.',
-            },
-            {
-              n: '②',
-              title: 'Original quality, no watermark',
-              body: 'Files come from Instagram\'s CDN as they were uploaded. MP4 video at source resolution, JPG photos at the public 1080px cap, MP3 audio at source bitrate. No re-encoding, no watermark glued on.',
-            },
-            {
-              n: '③',
-              title: 'Every post type covered',
-              body: 'Reels, Stories, Highlights, photo carousels, profile pictures, IGTV, live replays, audio rips. One tool, eight focused pages, the same anonymous fetch behind each.',
-            },
-          ].map(({ n, title, body }, i) => (
+          {d.home.features.map(({ title, body }, i) => (
             <div key={i} style={{
               padding: '40px 32px',
               borderLeft: i > 0 ? '1px solid #d4d4d4' : 'none',
             }}>
-              <div style={{ fontSize: 28, marginBottom: 16 }}>{n}</div>
+              <div style={{ fontSize: 28, marginBottom: 16 }}>{['①','②','③'][i]}</div>
               <p style={{ fontSize: 18, fontWeight: 900, letterSpacing: '-0.02em', marginBottom: 12 }}>{title}</p>
               <p style={{ fontSize: 13, color: '#888', lineHeight: 1.6 }}>{body}</p>
             </div>
@@ -170,28 +154,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             {d.ui.howItWorks}
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
-            {[
-              {
-                step: '01',
-                title: 'Paste the URL',
-                body: 'Open the post or profile on Instagram, copy the link or the @username. Paste it into the field on whichever tool page matches what you want — Reels, Stories, Photos, Highlights, DP, Video, or Audio.',
-              },
-              {
-                step: '02',
-                title: 'Pick what to save',
-                body: 'The page lists every available file in upload order. For carousels, each frame shows separately with the position. For Reels, you choose between full MP4 and audio-only MP3.',
-              },
-              {
-                step: '03',
-                title: 'Save to device',
-                body: 'Hit save. The file lands in your default download location — Files on iOS, Downloads on Android, the regular browser folder on desktop. No account record, no follow-up.',
-              },
-            ].map(({ step, title, body }, i) => (
-              <div key={step} style={{
+            {d.home.steps.map(({ title, body }, i) => (
+              <div key={i} style={{
                 padding: '40px 32px',
                 borderLeft: i > 0 ? '1px solid #333' : 'none',
               }}>
-                <p style={{ fontSize: 48, fontWeight: 900, color: '#333', letterSpacing: '-0.04em', marginBottom: 20 }}>{step}</p>
+                <p style={{ fontSize: 48, fontWeight: 900, color: '#333', letterSpacing: '-0.04em', marginBottom: 20 }}>{['01','02','03'][i]}</p>
                 <p style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-0.02em', marginBottom: 12 }}>{title}</p>
                 <p style={{ fontSize: 13, color: '#666', lineHeight: 1.7 }}>{body}</p>
               </div>
@@ -206,24 +174,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           {d.ui.faq}
         </p>
         <div>
-          {[
-            {
-              q: 'Do I need an Instagram account?',
-              a: "No. The username is enough. The fetch runs through this site's servers, not your Instagram session, so no login is exchanged and no follow request goes out.",
-            },
-            {
-              q: 'Is the insta stories viewer anonymous?',
-              a: "Yes, for public accounts. The owner's viewer list never gets your username because the request doesn't carry one. Private accounts are off-limits to any third-party tool — including this one — by design.",
-            },
-            {
-              q: 'What about download limits or watermarks?',
-              a: "No daily cap, no premium tier, no watermark stamped on what you save. The MP4 or JPG is the original CDN file, exactly as Instagram serves it. We don't re-encode, we don't compress, we don't add anything.",
-            },
-            {
-              q: 'Why are there separate pages for Reels, Stories, Photos, Highlights?',
-              a: "Each format has its own quirks — Reels max out at 90 seconds and have audio-only export, Stories live for 24 hours, Highlights are the pinned ones that survive past expiry, photos can be carousels of up to ten images. Splitting the pages keeps the right options visible for each. Same backend behind all of them.",
-            },
-          ].map(({ q, a }, i) => (
+          {d.home.faq.map(({ q, a }, i) => (
             <div key={i} style={{
               borderTop: '1px solid #d4d4d4',
               padding: '24px 0',

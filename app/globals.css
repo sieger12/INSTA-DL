@@ -27,11 +27,16 @@ body {
 .invert-hover {
   color: var(--black);
   background: transparent;
-  transition: background 0.15s, color 0.15s;
 }
-.invert-hover:hover,
-.invert-hover:hover * {
+.invert-hover,
+.invert-hover * {
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+.invert-hover:hover {
   background-color: var(--black);
+  color: var(--white) !important;
+}
+.invert-hover:hover * {
   color: var(--white) !important;
 }
 .invert-hover:hover .tool-num {
@@ -42,11 +47,16 @@ body {
 .chip-invert {
   color: var(--white);
   background: transparent;
-  transition: background 0.15s, color 0.15s;
 }
-.chip-invert:hover,
-.chip-invert:hover * {
+.chip-invert,
+.chip-invert * {
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+.chip-invert:hover {
   background-color: var(--white);
+  color: var(--black) !important;
+}
+.chip-invert:hover * {
   color: var(--black) !important;
 }
 

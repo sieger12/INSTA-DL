@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { LOCALES } from '@/lib/i18n';
 
-const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://insta-dl.vercel.app';
+const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://igdown.dev';
 
 const PATHS = [
   { path: '', priority: 1.0 },

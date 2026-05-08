@@ -29,7 +29,7 @@ const SECTIONS = [
   },
   {
     h2: 'How to reach me',
-    body: 'Removal requests, DMCA, privacy questions, anything that needs a human reply — write to [hello@insta-dl.com](mailto:hello@insta-dl.com). It is not a ticketing system. I read it.',
+    body: 'Removal requests, DMCA, privacy questions, anything that needs a human reply — write to [unsieger00kk@gmail.com](mailto:unsieger00kk@gmail.com). It is not a ticketing system. I read it.',
   },
 ];
 

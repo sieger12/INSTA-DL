@@ -3,7 +3,7 @@ import { headers } from 'next/headers';
 import './globals.css';
 import { isLocale, DEFAULT_LOCALE, RTL_LOCALES, type Locale } from '@/lib/i18n';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://insta-dl.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://igdown.dev';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

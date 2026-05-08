@@ -43,7 +43,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           One inbox, one person reading it.
         </p>
         <p style={{ fontSize: 15, color: '#333', lineHeight: 1.8, marginBottom: 14 }}>
-          <a href="mailto:hello@insta-dl.com" style={{
+          <a href="mailto:unsieger00kk@gmail.com" style={{
             fontSize: 'clamp(28px, 4.5vw, 44px)',
             fontWeight: 900,
             letterSpacing: '-0.03em',
@@ -52,7 +52,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
             textUnderlineOffset: '0.12em',
             textDecorationThickness: '2px',
           }}>
-            hello@insta-dl.com
+            unsieger00kk@gmail.com
           </a>
         </p>
         <p style={{ fontSize: 13, color: '#666', lineHeight: 1.7 }}>

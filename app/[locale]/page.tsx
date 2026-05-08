@@ -2,19 +2,20 @@ import Link from 'next/link';
 import DownloadInput from '@/components/DownloadInput';
 
 const TOOLS = [
-  { num: '01', label: 'VIDEO',      href: '/video',      desc: '' },
-  { num: '02', label: 'PHOTO',      href: '/photo',      desc: '' },
-  { num: '03', label: 'REELS',      href: '/reels',      desc: '' },
-  { num: '04', label: 'STORY',      href: '/story',      desc: '' },
-  { num: '05', label: 'HIGHLIGHTS', href: '/highlights', desc: '' },
-  { num: '06', label: 'DP',         href: '/dp',         desc: '' },
-  { num: '07', label: 'AUDIO',      href: '/audio',      desc: '' },
-  { num: '08', label: 'PRIVATE',    href: '/private',    desc: '' },
+  { num: '01', label: 'VIDEO',      slug: 'video' },
+  { num: '02', label: 'PHOTO',      slug: 'photo' },
+  { num: '03', label: 'REELS',      slug: 'reels' },
+  { num: '04', label: 'STORY',      slug: 'story' },
+  { num: '05', label: 'HIGHLIGHTS', slug: 'highlights' },
+  { num: '06', label: 'DP',         slug: 'dp' },
+  { num: '07', label: 'AUDIO',      slug: 'audio' },
+  { num: '08', label: 'PRIVATE',    slug: 'private' },
 ];
 
 const MARQUEE_TEXT = '★ FREE  ★ NO LOGIN  ★ HIGH QUALITY  ★ NO WATERMARK  ★ FAST  ★ FREE  ★ NO LOGIN  ★ HIGH QUALITY  ★ NO WATERMARK  ★ FAST  ';
 
-export default function HomePage() {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────── */}
@@ -96,8 +97,8 @@ export default function HomePage() {
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
         }}>
-          {TOOLS.map(({ num, label, href, desc }, i) => (
-            <Link key={href} href={href} style={{
+          {TOOLS.map(({ num, label, slug }, i) => (
+            <Link key={slug} href={`/${locale}/${slug}`} style={{
               textDecoration: 'none',
               borderRight: i % 4 !== 3 ? '1px solid #d4d4d4' : 'none',
               borderBottom: i < 4 ? '1px solid #d4d4d4' : 'none',
@@ -109,7 +110,6 @@ export default function HomePage() {
             >
               <span className="tool-num">{num}</span>
               <span style={{ fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em' }}>{label}</span>
-              {desc && <span style={{ fontSize: 12, color: '#888', marginTop: 'auto' }}>{desc}</span>}
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', marginTop: 'auto' }}>
                 USE FREE →
               </span>

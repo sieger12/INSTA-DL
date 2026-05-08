@@ -33,7 +33,7 @@ const SECTIONS = [
   },
 ];
 
-function renderBody(text: string): React.ReactNode[] {
+function renderBody(text: string, locale: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
   let cursor = 0;
   const re = /\[([^\]]+)\]\(([^)]+)\)/g;
@@ -41,10 +41,11 @@ function renderBody(text: string): React.ReactNode[] {
   let key = 0;
   while ((match = re.exec(text)) !== null) {
     if (match.index > cursor) parts.push(text.slice(cursor, match.index));
-    const [, label, href] = match;
-    if (href.startsWith('http') || href.startsWith('mailto:')) {
-      parts.push(<a key={key++} href={href} style={{ color: '#0a0a0a', textDecoration: 'underline' }}>{label}</a>);
+    const [, label, rawHref] = match;
+    if (rawHref.startsWith('http') || rawHref.startsWith('mailto:')) {
+      parts.push(<a key={key++} href={rawHref} style={{ color: '#0a0a0a', textDecoration: 'underline' }}>{label}</a>);
     } else {
+      const href = rawHref.startsWith('/') ? `/${locale}${rawHref}` : `/${locale}/${rawHref}`;
       parts.push(<Link key={key++} href={href} style={{ color: '#0a0a0a', textDecoration: 'underline' }}>{label}</Link>);
     }
     cursor = match.index + match[0].length;
@@ -53,7 +54,8 @@ function renderBody(text: string): React.ReactNode[] {
   return parts;
 }
 
-export default function PrivacyPage() {
+export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   return (
     <article style={{ maxWidth: 760, margin: '0 auto', padding: '64px 24px' }}>
       <header style={{ borderBottom: '1px solid #0a0a0a', paddingBottom: 28 }}>
@@ -73,7 +75,7 @@ export default function PrivacyPage() {
           <h2 style={{ fontSize: 18, fontWeight: 900, letterSpacing: '-0.02em', marginBottom: 14 }}>{h2}</h2>
           {body.split('\n\n').map((para, j) => (
             <p key={j} style={{ fontSize: 15, color: '#333', lineHeight: 1.8, marginBottom: 14 }}>
-              {renderBody(para)}
+              {renderBody(para, locale)}
             </p>
           ))}
         </section>

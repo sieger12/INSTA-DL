@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import React from 'react';
+import { headers } from 'next/headers';
 import DownloadInput from './DownloadInput';
 import BigHeadline from './BigHeadline';
+import { isLocale, DEFAULT_LOCALE, type Locale } from '@/lib/i18n';
 
 // Renders <b>…</b> as <strong> and [text](url) as Next Link / <a>.
-// Anything else passes through as plain text.
-function renderRich(text: string): React.ReactNode[] {
+// Internal paths (starting with /) get the locale prefix added so users
+// stay on their selected language when clicking inline links.
+function renderRich(text: string, locale: Locale): React.ReactNode[] {
   const out: React.ReactNode[] = [];
   let cursor = 0;
   let key = 0;
@@ -17,12 +20,13 @@ function renderRich(text: string): React.ReactNode[] {
       out.push(<strong key={key++}>{m[1]}</strong>);
     } else if (m[2] !== undefined && m[3] !== undefined) {
       const label = m[2];
-      const href = m[3];
-      if (href.startsWith('http') || href.startsWith('mailto:')) {
+      const rawHref = m[3];
+      if (rawHref.startsWith('http') || rawHref.startsWith('mailto:')) {
         out.push(
-          <a key={key++} href={href} style={{ color: 'inherit', textDecoration: 'underline' }}>{label}</a>,
+          <a key={key++} href={rawHref} style={{ color: 'inherit', textDecoration: 'underline' }}>{label}</a>,
         );
       } else {
+        const href = rawHref.startsWith('/') ? `/${locale}${rawHref}` : `/${locale}/${rawHref}`;
         out.push(
           <Link key={key++} href={href} style={{ color: 'inherit', textDecoration: 'underline' }}>{label}</Link>,
         );
@@ -35,14 +39,14 @@ function renderRich(text: string): React.ReactNode[] {
 }
 
 const ALL_TOOLS = [
-  { label: 'Video',      href: '/video' },
-  { label: 'Photo',      href: '/photo' },
-  { label: 'Reels',      href: '/reels' },
-  { label: 'Story',      href: '/story' },
-  { label: 'Highlights', href: '/highlights' },
-  { label: 'DP',         href: '/dp' },
-  { label: 'Audio',      href: '/audio' },
-  { label: 'Private',    href: '/private' },
+  { label: 'Video',      slug: 'video' },
+  { label: 'Photo',      slug: 'photo' },
+  { label: 'Reels',      slug: 'reels' },
+  { label: 'Story',      slug: 'story' },
+  { label: 'Highlights', slug: 'highlights' },
+  { label: 'DP',         slug: 'dp' },
+  { label: 'Audio',      slug: 'audio' },
+  { label: 'Private',    slug: 'private' },
 ];
 
 interface Section { h2: string; body: string; }
@@ -58,7 +62,13 @@ interface Props {
   currentHref: string;
 }
 
-export default function ToolPageLayout({ num, topLine, bottomLine, subtitle, sections, faq, currentHref }: Props) {
+export default async function ToolPageLayout({ num, topLine, bottomLine, subtitle, sections, faq, currentHref }: Props) {
+  const headersList = await headers();
+  const pathname = headersList.get('x-pathname') ?? '/';
+  const segment = pathname.split('/')[1] ?? '';
+  const locale: Locale = isLocale(segment) ? segment : DEFAULT_LOCALE;
+  const currentSlug = currentHref.replace(/^\//, '');
+
   return (
     <>
       {/* ─── HERO ─── */}
@@ -107,7 +117,7 @@ export default function ToolPageLayout({ num, topLine, bottomLine, subtitle, sec
             <div>
               {body.split('\n\n').map((para, j) => (
                 <p key={j} style={{ fontSize: 14, color: '#444', lineHeight: 1.8, marginBottom: 16 }}>
-                  {renderRich(para)}
+                  {renderRich(para, locale)}
                 </p>
               ))}
             </div>
@@ -129,7 +139,7 @@ export default function ToolPageLayout({ num, topLine, bottomLine, subtitle, sec
             gap: 24,
           }}>
             <p style={{ fontSize: 15, fontWeight: 700 }}>{q}</p>
-            <p style={{ fontSize: 14, color: '#555', lineHeight: 1.7 }}>{renderRich(a)}</p>
+            <p style={{ fontSize: 14, color: '#555', lineHeight: 1.7 }}>{renderRich(a, locale)}</p>
           </div>
         ))}
         <div style={{ borderTop: '1px solid #d4d4d4' }} />
@@ -145,8 +155,8 @@ export default function ToolPageLayout({ num, topLine, bottomLine, subtitle, sec
             — OTHER TOOLS
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 0 }}>
-            {ALL_TOOLS.filter(t => t.href !== currentHref).map(({ label, href }) => (
-              <Link key={href} href={href} style={{
+            {ALL_TOOLS.filter(t => t.slug !== currentSlug).map(({ label, slug }) => (
+              <Link key={slug} href={`/${locale}/${slug}`} style={{
                 textDecoration: 'none',
                 fontSize: 12, fontWeight: 700, letterSpacing: '0.06em',
                 padding: '10px 20px',

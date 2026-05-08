@@ -1,6 +1,11 @@
 import Link from 'next/link';
+import type { Locale } from '@/lib/i18n';
 
-export default function Footer() {
+interface Props {
+  locale: Locale;
+}
+
+export default function Footer({ locale }: Props) {
   return (
     <footer style={{ borderTop: '1px solid #0a0a0a', marginTop: 120 }}>
       <div style={{
@@ -13,11 +18,11 @@ export default function Footer() {
         </span>
         <div style={{ display: 'flex', gap: 24 }}>
           {[
-            { label: 'Privacy', href: '/privacy' },
-            { label: 'Terms',   href: '/terms' },
-            { label: 'Contact', href: '/contact' },
+            { label: 'Privacy', href: 'privacy' },
+            { label: 'Terms',   href: 'terms' },
+            { label: 'Contact', href: 'contact' },
           ].map(({ label, href }) => (
-            <Link key={href} href={href} style={{
+            <Link key={href} href={`/${locale}/${href}`} style={{
               fontSize: 12, color: '#888', textDecoration: 'none',
               letterSpacing: '0.04em', fontWeight: 600,
             }}>

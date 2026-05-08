@@ -25,7 +25,8 @@ const REASONS = [
   },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   return (
     <article style={{ maxWidth: 760, margin: '0 auto', padding: '64px 24px' }}>
       <header style={{ borderBottom: '1px solid #0a0a0a', paddingBottom: 28 }}>
@@ -68,7 +69,7 @@ export default function ContactPage() {
 
       <section style={{ padding: '36px 0' }}>
         <p style={{ fontSize: 13, color: '#888', lineHeight: 1.7 }}>
-          Looking for what the site does or does not log? See the <Link href="/privacy" style={{ color: '#0a0a0a', textDecoration: 'underline' }}>Privacy</Link> page. For the rules of the road, the <Link href="/terms" style={{ color: '#0a0a0a', textDecoration: 'underline' }}>Terms</Link>.
+          Looking for what the site does or does not log? See the <Link href={`/${locale}/privacy`} style={{ color: '#0a0a0a', textDecoration: 'underline' }}>Privacy</Link> page. For the rules of the road, the <Link href={`/${locale}/terms`} style={{ color: '#0a0a0a', textDecoration: 'underline' }}>Terms</Link>.
         </p>
       </section>
     </article>

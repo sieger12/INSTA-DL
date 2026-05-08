@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import './globals.css';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import { isLocale, DEFAULT_LOCALE, RTL_LOCALES, type Locale } from '@/lib/i18n';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://insta-dl.vercel.app';
 
@@ -35,13 +35,16 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image' },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const headersList = await headers();
+  const pathname = headersList.get('x-pathname') ?? '/';
+  const segment = pathname.split('/')[1] ?? '';
+  const locale: Locale = isLocale(segment) ? segment : DEFAULT_LOCALE;
+  const dir = RTL_LOCALES.includes(locale) ? 'rtl' : 'ltr';
   return (
-    <html lang="en">
+    <html lang={locale} dir={dir}>
       <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#fafafa' }}>
-        <Header />
-        <main style={{ flex: 1 }}>{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

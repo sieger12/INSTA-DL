@@ -8,11 +8,31 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://insta-dl.vercel.ap
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'INSTADOWN — Instagram Downloader',
+    default: 'INSTADOWN — Instagram Downloader for Reels, Stories, Photos, Highlights',
     template: '%s | INSTADOWN',
   },
-  description: '',
-  robots: { index: true, follow: true },
+  description: 'Instagram downloader for Reels, Stories, photos, Highlights, profile pictures, IGTV, and audio. No login, no app, no watermark. Each format has its own focused page.',
+  keywords: [
+    'instagram downloader',
+    'insta story viewer',
+    'insta story download',
+    'reels downloader',
+    'instagram reels mp4 hd',
+    'instagram highlight download online',
+    'insta photo down',
+    'instagram photo downloader hd',
+    'insta profile viewer',
+    'instagram reels to mp3 converter',
+    'anonymous instagram story viewer',
+  ],
+  robots: { index: true, follow: true, 'max-image-preview': 'large' },
+  openGraph: {
+    type: 'website',
+    siteName: 'INSTADOWN',
+    title: 'INSTADOWN — Instagram Downloader',
+    description: 'Save Reels, Stories, Highlights, photos, audio, and profile pictures from Instagram. No login, no watermark.',
+  },
+  twitter: { card: 'summary_large_image' },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

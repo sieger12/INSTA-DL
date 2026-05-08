@@ -28,8 +28,11 @@ body {
   transition: background 0.15s, color 0.15s;
 }
 .invert-hover:hover {
-  background: var(--black);
-  color: var(--white);
+  background: var(--black) !important;
+  color: var(--white) !important;
+}
+.invert-hover:hover * {
+  color: var(--white) !important;
 }
 
 /* Tool number badge */

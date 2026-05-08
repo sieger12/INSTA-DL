@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import DownloadInput from '@/components/DownloadInput';
-import BigHeadline from '@/components/BigHeadline';
 
 const TOOLS = [
   { num: '01', label: 'VIDEO',      href: '/video',      desc: '' },
@@ -22,9 +21,37 @@ export default function HomePage() {
       <section style={{
         maxWidth: 1200, margin: '0 auto', padding: '80px 24px 0',
       }}>
-        {/* Big headline */}
-        <div style={{ marginBottom: 48 }}>
-          <BigHeadline topLine="INSTAGRAM" bottomLine="DOWNLOADER" />
+        {/* Big headline — user fills in */}
+        <div style={{
+          fontSize: 'clamp(52px, 9vw, 120px)',
+          fontWeight: 900,
+          letterSpacing: '-0.045em',
+          lineHeight: 0.92,
+          marginBottom: 48,
+        }}>
+          <span style={{ display: 'block' }}>
+            <span style={{
+              fontSize: '1em',
+              display: 'inline-block',
+              transform: 'translateY(-0.08em)',
+              marginRight: '0.08em',
+              lineHeight: 1,
+              WebkitTextStroke: '2px #0a0a0a',
+              color: 'transparent',
+            }}>[</span>
+            INSTAGRAM
+          </span>
+          <span style={{ display: 'block', WebkitTextStroke: '2px #0a0a0a', color: 'transparent' }}>
+            <span style={{ WebkitTextStroke: '0', color: '#0a0a0a' }}>D</span>{'OWN'}<span style={{ WebkitTextStroke: '0', color: '#0a0a0a' }}>L</span>{'OADER'}<span style={{
+              fontSize: '1em',
+              display: 'inline-block',
+              transform: 'translateY(-0.08em)',
+              marginLeft: '0.08em',
+              lineHeight: 1,
+              WebkitTextStroke: '0',
+              color: '#0a0a0a',
+            }}>]</span>
+          </span>
         </div>
 
         {/* Download input */}
@@ -65,10 +92,15 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="cell-grid grid-tools">
-          {TOOLS.map(({ num, label, href, desc }) => (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+        }}>
+          {TOOLS.map(({ num, label, href, desc }, i) => (
             <Link key={href} href={href} style={{
               textDecoration: 'none',
+              borderRight: i % 4 !== 3 ? '1px solid #d4d4d4' : 'none',
+              borderBottom: i < 4 ? '1px solid #d4d4d4' : 'none',
               padding: '32px 24px',
               display: 'flex', flexDirection: 'column', gap: 12,
               minHeight: 160,
@@ -94,7 +126,7 @@ export default function HomePage() {
         <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#888', marginBottom: 40 }}>
           — WHY USE THIS
         </p>
-        <div className="grid-three" style={{ gap: 0 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0' }}>
           {[
             {
               n: '①',
@@ -133,7 +165,7 @@ export default function HomePage() {
           <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#888', marginBottom: 40 }}>
             — HOW IT WORKS
           </p>
-          <div className="grid-three">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
             {[
               {
                 step: '01',
@@ -188,9 +220,12 @@ export default function HomePage() {
               a: "Each format has its own quirks — Reels max out at 90 seconds and have audio-only export, Stories live for 24 hours, Highlights are the pinned ones that survive past expiry, photos can be carousels of up to ten images. Splitting the pages keeps the right options visible for each. Same backend behind all of them.",
             },
           ].map(({ q, a }, i) => (
-            <div key={i} className="grid-faq" style={{
+            <div key={i} style={{
               borderTop: '1px solid #d4d4d4',
               padding: '24px 0',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: 24,
             }}>
               <p style={{ fontSize: 15, fontWeight: 700 }}>{q}</p>
               <p style={{ fontSize: 14, color: '#555', lineHeight: 1.7 }}>{a}</p>

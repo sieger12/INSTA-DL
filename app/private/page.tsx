@@ -10,7 +10,8 @@ export default function Page() {
   return (
     <ToolPageLayout
       num="08"
-      title="[PRIVATE\nACCOUNTS]"
+      topLine="PRIVATE"
+      bottomLine="DOWNLOADER"
       subtitle="The honest take on private profiles — what is actually possible, and what is not."
       currentHref="/private"
       sections={[

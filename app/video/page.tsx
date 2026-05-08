@@ -10,7 +10,8 @@ export default function Page() {
   return (
     <ToolPageLayout
       num="01"
-      title="[VIDEO\nDOWNLOADER]"
+      topLine="VIDEO"
+      bottomLine="DOWNLOADER"
       subtitle="Instagram video downloader for feed videos, IGTV, and live replays. MP4, original quality."
       currentHref="/video"
       sections={[

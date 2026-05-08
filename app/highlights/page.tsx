@@ -10,7 +10,8 @@ export default function Page() {
   return (
     <ToolPageLayout
       num="05"
-      title="[HIGHLIGHTS\nDOWNLOADER]"
+      topLine="HIGHLIGHTS"
+      bottomLine="DOWNLOADER"
       subtitle="Instagram highlight download online — save pinned story collections at original quality."
       currentHref="/highlights"
       sections={[

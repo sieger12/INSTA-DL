@@ -10,7 +10,8 @@ export default function Page() {
   return (
     <ToolPageLayout
       num="04"
-      title="[STORY VIEWER\nDOWNLOADER]"
+      topLine="STORY"
+      bottomLine="DOWNLOADER"
       subtitle="View an insta story anonymously and save it to camera roll. No login, no app, no trace."
       currentHref="/story"
       sections={[

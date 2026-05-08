@@ -10,7 +10,8 @@ export default function Page() {
   return (
     <ToolPageLayout
       num="03"
-      title="[REELS\nDOWNLOADER]"
+      topLine="REELS"
+      bottomLine="DOWNLOADER"
       subtitle="Download Instagram Reels without watermark, save MP4 HD to phone, or rip the audio as MP3."
       currentHref="/reels"
       sections={[

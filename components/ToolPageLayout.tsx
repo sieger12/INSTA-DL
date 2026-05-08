@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import DownloadInput from './DownloadInput';
-import Bracketed from './Bracketed';
+import BigHeadline from './BigHeadline';
 
 const ALL_TOOLS = [
   { label: 'Video',      href: '/video' },
@@ -18,14 +18,15 @@ interface FAQItem  { q: string; a: string; }
 
 interface Props {
   num:       string;
-  title:     string;
+  topLine:   string;
+  bottomLine: string;
   subtitle?: string;
   sections:  Section[];
   faq:       FAQItem[];
   currentHref: string;
 }
 
-export default function ToolPageLayout({ num, title, subtitle, sections, faq, currentHref }: Props) {
+export default function ToolPageLayout({ num, topLine, bottomLine, subtitle, sections, faq, currentHref }: Props) {
   return (
     <>
       {/* ─── HERO ─── */}
@@ -37,13 +38,7 @@ export default function ToolPageLayout({ num, title, subtitle, sections, faq, cu
               fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
               color: '#888', paddingTop: 10,
             }}>{num}</span>
-            <h1 style={{
-              fontSize: 'clamp(40px, 7vw, 96px)',
-              fontWeight: 900, letterSpacing: '-0.045em',
-              lineHeight: 0.9,
-              whiteSpace: 'pre-line',
-              margin: 0,
-            }}><Bracketed text={title} /></h1>
+            <BigHeadline topLine={topLine} bottomLine={bottomLine} compact />
           </div>
 
           {subtitle && (

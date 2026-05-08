@@ -10,7 +10,8 @@ export default function Page() {
   return (
     <ToolPageLayout
       num="02"
-      title="[PHOTO\nDOWNLOADER]"
+      topLine="PHOTO"
+      bottomLine="DOWNLOADER"
       subtitle="Download a single Instagram photo or every image in a carousel — original JPG, no login."
       currentHref="/photo"
       sections={[

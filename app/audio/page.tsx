@@ -10,7 +10,8 @@ export default function Page() {
   return (
     <ToolPageLayout
       num="07"
-      title="[AUDIO\nDOWNLOADER]"
+      topLine="AUDIO"
+      bottomLine="DOWNLOADER"
       subtitle="Instagram Reels to MP3 converter — download Reels audio only, no app, no login."
       currentHref="/audio"
       sections={[

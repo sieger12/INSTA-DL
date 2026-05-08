@@ -10,7 +10,8 @@ export default function Page() {
   return (
     <ToolPageLayout
       num="06"
-      title="[PROFILE\nPICTURE]"
+      topLine="PROFILE"
+      bottomLine="DOWNLOADER"
       subtitle="Insta profile viewer — download any DP at full size, no login. Works for private accounts too."
       currentHref="/dp"
       sections={[

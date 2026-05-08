@@ -3,7 +3,35 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { LOCALES, LOCALE_LABELS, isLocale, type Locale } from '@/lib/i18n';
-import { Globe, ChevronDown } from 'lucide-react';
+
+function GlobeIcon({ size = 14 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  );
+}
+
+function ChevronDownIcon({ size = 14, rotated = false }: { size?: number; rotated?: boolean }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      style={{ transform: rotated ? 'rotate(180deg)' : 'none', transition: 'transform 0.18s ease' }}
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
 
 interface Props {
   locale: Locale;
@@ -69,9 +97,9 @@ export default function LanguagePicker({ locale }: Props) {
           color: '#0a0a0a',
         }}
       >
-        <Globe size={14} aria-hidden />
+        <GlobeIcon size={14} />
         <span>{LOCALE_LABELS[locale]}</span>
-        <ChevronDown size={14} aria-hidden style={{ transform: open ? 'rotate(180deg)' : 'none' }} />
+        <ChevronDownIcon size={14} rotated={open} />
       </button>
 
       {open && (
